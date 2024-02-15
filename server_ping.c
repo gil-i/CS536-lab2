@@ -12,6 +12,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+
 #define MAX_MSG 512
 #define CLIENT_DOM "/tmp/myclient"
 #define PORT 4444
@@ -48,7 +49,7 @@ int main (int argc, char * argv[]){
 	recvfrom(socketfd,recvline,10000,MSG_WAITALL, (struct sockaddr *) &caddress, &len);
 	printf("Received: %s\n",recvline);
 
-        int code= sendto(socketfd, (const char *)recvline, strlen(recvline),MSG_CONFIRM, (const struct sockaddr *) &caddress, len); 
+        int code= sendto(socketfd, (const char *)recvline, strlen(recvline),MSG_DONTROUTE, (const struct sockaddr *) &caddress, len); 
 	printf("Sent ACK with code: %d\n",code);
 	if(code <0){
 	perror("Error with sending acknowlegment.\n Error ");

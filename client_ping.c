@@ -57,7 +57,7 @@ int main (int argc, char * argv[]){
 	unsigned long e_usec;
         gettimeofday(&start,0);
 
-	sendto(socketfd,(const char *)message,strlen(message), MSG_CONFIRM, (const struct sockaddr *) &saddress, len) ;
+	sendto(socketfd,(const char *)message,strlen(message), MSG_DONTROUTE, (const struct sockaddr *) &saddress, len) ;
 
 	char  recvline[MAX_MSG];
 
